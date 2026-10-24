@@ -7,5 +7,8 @@
   "license_file": "third_party/gpt-instruct/LICENSE",
   "adapted_symbol": "atomic_write_text",
   "destination_file": "tools/manage_skill.py",
+  "additional_destination_files": ["tools/manage_prompt.py"],
+  "adapted_configuration_symbols": ["atomic_write_bytes", "instruction_slot", "replace_field"],
+  "prompt_provenance_file": "prompts/source.json",
   "retrieved_on": "2026-10-24"
 }

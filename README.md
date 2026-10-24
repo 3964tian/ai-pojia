@@ -1,70 +1,75 @@
 # AI破甲 · ai-pojia
 
-左手的 DEMO 实战 Skill：把自己编写或获授权的测试程序交给 AI，完成分析、修改和运行验证。
+左手的执行提示词配置与 DEMO 实战 Skill。安装一次，加载内置提示词、安装 Skill，并提供检查与恢复入口。
 
-**当前版本：v0.1.0 预览版。** 已提供 Skill、独立安装/卸载工具和插件清单；左手的测试 DEMO 待补充，尚无真实 DEMO 通关成绩或模型对比数据。
+**v0.2.0：已加入改写自 gpt-instruct v45 的提示词及真实加载机制。** 目标是让 AI 在明确授权的任务里持续完成工作，交付可核对的产物。尚无通用取消拒答、全模型兼容或正式 DEMO 通关的实测结论。
 
-## 三步开始
+## 最简单的安装方式
 
-准备一个支持本地 Skills 的 Codex 客户端，以及 Python 3.9 或以上版本。安装器仅使用 Python 标准库；执行实战任务仍需要客户端已有的模型、文件访问和相应分析工具。
+把下面整段发给正在使用的 **Codex**：
+
+> 请从 https://github.com/zgx949/ai-pojia 安装 AI破甲的提示词配置和 Skill。先阅读 README，检查环境，然后运行 `python3 install.py`，最后用 `python3 install.py --doctor` 确认配置。保留现有模型、Provider 和认证设置。
+
+也可以手动安装：
 
 ```bash
 git clone https://github.com/zgx949/ai-pojia.git
 cd ai-pojia
-python3 tools/manage_skill.py install
+python3 install.py
 ```
 
-Windows 可使用 `py -3` 替代 `python3`。本版本安装器的实际验证环境见 [验证记录](docs/validation.md)。
+安装后重新加载客户端或开始新会话。环境要求：支持 `model_instructions_file` 与本地 Skills 的 Codex、Python 3.9 或以上；Windows 可用 `py -3` 替代 `python3`。实际验证范围见 [验证记录](docs/validation.md)。
 
-在客户端重新加载 Skills 或开始新会话，然后把自己的测试 DEMO 放进独立工作目录，发送：
+## 装完发生什么
 
-> 用 $ai-pojia 分析这个我自己编写的测试 DEMO。先说明它如何工作，再在副本上完成我指定的修改，实际运行验证，并保留原文件和修改记录。
+- 内置 [提示词](prompts/ai-pojia.md) 复制到 Codex 目录，通过顶层 `model_instructions_file` 加载。
+- [ai-pojia Skill](skills/ai-pojia/SKILL.md) 安装到同一 Codex 目录的 `skills/ai-pojia/`。
+- 提供来源、摘要、备份、配置恢复和安装检查。
 
-目标是得到可检查的实际产物：原始文件摘要、分析证据、修改后的副本、验证命令、运行结果和可恢复记录。缺少模型、工具或 DEMO 时会明确说明缺项。
+`model_instructions_file` 替换 Codex 的内置工作指令，作用于采用这份配置的新会话。普通插件/Skill 安装不会自动启用它。[官方配置说明](https://learn.chatgpt.com/docs/config-file/config-reference)
 
-## 安装与卸载
+安装器管理自己的提示词、安装状态、备份、Skill 目录和顶层指令字段；模型、Provider、认证、工具审批和权限字段保持原值。默认 Codex 目录为 `CODEX_HOME`，未设置时为 `~/.codex`；可用 `--codex-dir` 指定其他目录。
 
-默认安装到 `${CODEX_HOME}/skills/ai-pojia`；未设置 `CODEX_HOME` 时使用 `~/.codex/skills/ai-pojia`。工具支持显式指定 Skills 目录：
+## 使用
+
+普通任务会采用加载的执行指令。进行自写测试 DEMO 实战时，把文件放入独立目录并发送：
+
+> 用 $ai-pojia 分析这个我自己编写的测试 DEMO。先说明它如何工作，再在副本上完成指定修改，实际运行验证，并保留原文件和修改记录。
+
+Skill 交付原始摘要、分析证据、修改副本、差异、验证命令及实际结果。左手的正式测试 DEMO 后续补充，当前 [demos/](demos/) 没有测试程序或预置答案。
+
+## 检查、预览和恢复
 
 ```bash
-# 预览，不写入文件
-python3 tools/manage_skill.py install --dry-run
+python3 install.py --doctor
+python3 install.py --dry-run
+python3 install.py --uninstall
 
-# 只读检查
-python3 tools/manage_skill.py doctor
-
-# 安装到指定的 Skills 目录
-python3 tools/manage_skill.py install --skills-dir /absolute/path/to/skills
-
-# 卸载并归档当前受管版本
-python3 tools/manage_skill.py uninstall
+# 为指定客户端目录安装
+python3 install.py --codex-dir /absolute/path/to/codex
 ```
 
-安装器只管理自己的 Skill 目录及同级备份目录。更新和卸载前会检查文件摘要；发现手动改动、未知文件或损坏的管理记录时，会停止操作并保留现场。历史版本保存在 Skills 目录下的 `.ai-pojia-backups/`。
+预览不写文件。卸载恢复安装前的顶层指令字段，并归档自己的 Skill；安装后对 Provider 等其他字段的修改会保留。遇到手改文件或配置冲突，工具停止对应操作并报告真实状态。
 
-本版本以以上 Python 安装方式为准。[plugin.json](plugin.json) 提供插件打包入口，尚未提交或上架公共插件目录。
+高级用户可分别运行 `tools/manage_prompt.py`、`tools/manage_skill.py`，均支持安装、卸载、只读检查、指定目录及 JSON 输出。安装器仅使用 Python 标准库，实际任务使用客户端已有模型和工具。
 
-## DEMO 实战
+## 上游与修改
 
-左手后续会提供独立测试 DEMO。当前 [demos/](demos/) 仅说明接入要求，没有测试程序，也没有预置答案。提交自己的程序前，参考 [DEMO 接入说明](skills/ai-pojia/references/demo-contract.md)。
+来源为 [MDX-Tom/gpt-instruct](https://github.com/MDX-Tom/gpt-instruct) 固定提交 `3ab84df`，MIT。保留 li lingbo、yynxxxxx 的原版权与 [MIT 全文](third_party/gpt-instruct/LICENSE)。
 
-每次实战都以用户指定的目标为准，在副本上操作，并将“模型拒答、工具缺失、分析失败、运行失败、验证通过”分开记录。Skill 提供工作流；它本身不会增加模型或逆向工具的权限，也不保证消除模型拒答。
+本版本改写实际 v45 提示词，保留连续执行、工件交付、基线对照和恢复验证，去掉将所有真实目标自动视作沙箱、忽略归属/范围、无条件禁止拒答及无关分支。详见 [提示词说明](prompts/README.md)和 [来源摘要](prompts/source.json)。
 
-## 来源与修改
+加载成功只说明配置已指向并校验内置指令，不证明模型一定接受某个请求；客户端、模型和服务端规则仍影响实际结果。模型前后对照、DEMO 结果与失败记录在实测后补充。
 
-安装工具复用了 [MDX-Tom/gpt-instruct](https://github.com/MDX-Tom/gpt-instruct) 的原子写入实现，并借鉴其备份、状态记录、摘要校验及回滚方式。
+感谢上游作者及维护者。复用代码和修改记录见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
-ai-pojia 将部署目标改成独立 Skill 目录，加入完整目录校验、更新归档与卸载归档。当前包未包含上游通用越狱提示词、历史提示词 ZIP 或其模型评测结果。
-
-固定来源版本、修改范围和版权见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。感谢原作者 li lingbo、yynxxxxx 及上游维护者。
-
-## 本地验证与打包
+## 开发与打包
 
 ```bash
 python3 -m unittest discover -s tests -v
 python3 tools/package_release.py
 ```
 
-验证分为安装器测试、Skill 结构检查和真实 DEMO 实战。前两项通过不代表第三项完成；具体范围见 [验证记录](docs/validation.md)。
+[plugin.json](plugin.json) 提供插件打包入口，尚未上架公共目录；它安装 Skill，不自动修改全局指令。当前完整一键入口是 `install.py`。
 
-项目原创内容使用 MIT；上游版权声明及 MIT 全文保留在 [third_party/gpt-instruct/LICENSE](third_party/gpt-instruct/LICENSE)。
+原创内容使用 MIT。验证范围见 [docs/validation.md](docs/validation.md)。

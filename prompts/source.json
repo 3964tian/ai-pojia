@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/MDX-Tom/gpt-instruct",
+  "commit": "3ab84df64468bb74cc9eb4e5423660083953c44f",
+  "archive": "gpt-5.6-sol-v45.zip",
+  "archive_sha256": "c86c2c6d20a4d1155d87422f485eb37b77539132270918c002b5d8237a5adf54",
+  "archive_member": "gpt-5.6-sol-unrestricted-v45.md",
+  "original_text_sha256": "c71c50e2f7a303b5eebc2b24c0b1ca0d9c753e3240db05c3e472c679907898f7",
+  "adapted_file": "prompts/ai-pojia.md",
+  "adapted_text_sha256": "c1b2fa4dec77b6626f757aee99b1f39e0e3f2727418772d9141027e7e4260b58",
+  "license": "MIT",
+  "adapted_on": "2026-10-24",
+  "changes": [
+    "Retain task continuity and verified artifacts",
+    "Retain original/copy/diff/baseline/rollback workflow",
+    "Use real ownership and task scope; remove synthetic-fixture reassignment",
+    "Remove unconditional no-refusal and unrelated process branches",
+    "Keep observed results separate from unverified claims"
+  ]
+}

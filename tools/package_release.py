@@ -14,9 +14,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = (
-    "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "plugin.json", ".gitignore",
-    "tools/manage_skill.py", "tools/package_release.py",
-    "tests/test_manage_skill.py", "docs/validation.md", "demos/README.md",
+    "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "plugin.json", ".gitignore", "install.py",
+    "tools/manage_skill.py", "tools/manage_prompt.py", "tools/package_release.py",
+    "tests/test_manage_skill.py", "tests/test_manage_prompt.py", "tests/test_install.py",
+    "docs/validation.md", "demos/README.md", "prompts/ai-pojia.md", "prompts/README.md", "prompts/source.json",
     "third_party/gpt-instruct/LICENSE", "third_party/gpt-instruct/source.json",
     "skills/ai-pojia/SKILL.md", "skills/ai-pojia/agents/openai.yaml",
     "skills/ai-pojia/references/demo-contract.md",

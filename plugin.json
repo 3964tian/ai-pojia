@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ai-pojia",
-  "version": "0.1.0",
-  "description": "左手的 DEMO 实战 Skill：分析自己的测试程序，在副本上修改，并用实际运行结果验证。",
+  "version": "0.2.0",
+  "description": "左手的执行提示词配置与 DEMO 实战 Skill：一键加载、检查与恢复，保留真实产物及验证记录。",
   "author": {
     "name": "左手",
     "url": "https://github.com/zgx949"
