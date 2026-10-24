@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ai-pojia",
+  "version": "0.1.0",
+  "description": "左手的 DEMO 实战 Skill：分析自己的测试程序，在副本上修改，并用实际运行结果验证。",
+  "author": {
+    "name": "左手",
+    "url": "https://github.com/zgx949"
+  },
+  "homepage": "https://github.com/zgx949/ai-pojia",
+  "repository": "https://github.com/zgx949/ai-pojia",
+  "license": "MIT",
+  "keywords": ["skills", "demo", "reverse-engineering", "ai-pojia"],
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true
+    }
+  }
+}

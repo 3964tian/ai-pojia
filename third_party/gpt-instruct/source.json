@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/MDX-Tom/gpt-instruct",
+  "commit": "3ab84df64468bb74cc9eb4e5423660083953c44f",
+  "source_file": "codex-instruct.py",
+  "source_blob": "b55d4a181105ac1f7d932e3c3343c65cff00f7e9",
+  "license": "MIT",
+  "license_file": "third_party/gpt-instruct/LICENSE",
+  "adapted_symbol": "atomic_write_text",
+  "destination_file": "tools/manage_skill.py",
+  "retrieved_on": "2026-10-24"
+}
