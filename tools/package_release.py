@@ -15,9 +15,17 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 FILES = (
     "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "plugin.json", ".gitignore", "install.py",
-    "tools/manage_skill.py", "tools/manage_prompt.py", "tools/package_release.py",
+    "tools/manage_skill.py", "tools/manage_prompt.py", "tools/manage_library.py", "tools/package_release.py",
     "tests/test_manage_skill.py", "tests/test_manage_prompt.py", "tests/test_install.py",
+    "tests/test_manage_library.py",
     "docs/validation.md", "demos/README.md", "prompts/ai-pojia.md", "prompts/README.md", "prompts/source.json",
+    "prompts/library/README.md", "prompts/library/source.json",
+    "prompts/library/gpt-5.6-sol-v45.md",
+    "prompts/library/gpt-6-astra-v2-rc1.md",
+    "prompts/library/gpt-6.1-sol-v1-rc2.md",
+    "prompts/library/gpt-6-astra-v1.md",
+    "prompts/library/gpt-6-astra-v1-rc1.md",
+    "prompts/library/gpt-6.1-sol-v1-rc1.md",
     "third_party/gpt-instruct/LICENSE", "third_party/gpt-instruct/source.json",
     "skills/ai-pojia/SKILL.md", "skills/ai-pojia/agents/openai.yaml",
     "skills/ai-pojia/references/demo-contract.md",

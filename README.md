@@ -4,6 +4,18 @@
 
 **v0.2.0：已加入改写自 gpt-instruct v45 的提示词及真实加载机制。** 目标是让 AI 在明确授权的任务里持续完成工作，交付可核对的产物。尚无通用取消拒答、全模型兼容或正式 DEMO 通关的实测结论。
 
+**v0.3.0：内置完整提示词库。** 上游三条并行线逐字节收录（v45 稳定版、gpt-6-astra-v2-rc1、gpt-6.1-sol-v1-rc2），外加 6 系列归档版；通过 Codex 的 `--profile` 分层机制按会话切换，不覆盖顶层配置。见 [提示词库](prompts/library/README.md)。
+
+## 三套提示词，三条加载路径
+
+| 你想要的 | 用什么 | 作用范围 |
+|---|---|---|
+| 一份克制的日常执行指令 | `python3 install.py` → 改写版 [ai-pojia.md](prompts/ai-pojia.md) | 顶层 `model_instructions_file`，全局 |
+| 上游原版，按会话挑版本 | `python3 tools/manage_library.py install` → `codex -p astra-v2` | 分层 profile，单次会话 |
+| 逆向/DEMO 实战工作流 | 随 `install.py` 一起装的 [ai-pojia Skill](skills/ai-pojia/SKILL.md) | 用 `$ai-pojia` 显式调用 |
+
+前两条都是"自动加载"（不需要在对话里点名），第三条是显式调用的 Skill。三者互不冲突，可以同时装。
+
 ## 最简单的安装方式
 
 把下面整段发给正在使用的 **Codex**：
@@ -51,7 +63,34 @@ python3 install.py --codex-dir /absolute/path/to/codex
 
 预览不写文件。卸载恢复安装前的顶层指令字段，并归档自己的 Skill；安装后对 Provider 等其他字段的修改会保留。遇到手改文件或配置冲突，工具停止对应操作并报告真实状态。
 
-高级用户可分别运行 `tools/manage_prompt.py`、`tools/manage_skill.py`，均支持安装、卸载、只读检查、指定目录及 JSON 输出。安装器仅使用 Python 标准库，实际任务使用客户端已有模型和工具。
+高级用户可分别运行 `tools/manage_prompt.py`、`tools/manage_skill.py`、`tools/manage_library.py`，均支持安装、卸载、只读检查、指定目录及 JSON 输出。安装器仅使用 Python 标准库，实际任务使用客户端已有模型和工具。
+
+## 提示词库（v0.3.0）
+
+上游 `MDX-Tom/gpt-instruct` 有三条并行产品线，本仓库逐字节收录：
+
+```bash
+python3 tools/manage_library.py list      # 看有哪些
+python3 tools/manage_library.py install   # 装到 ~/.codex
+```
+
+| 条目 | profile | 阶段 |
+|---|---|---|
+| gpt-5.6-sol-v45 | `sol56-v45` | 稳定 |
+| gpt-6-astra-v2-rc1 | `astra-v2` | 预发布 |
+| gpt-6.1-sol-v1-rc2 | `sol61-v2` | 预发布 |
+| gpt-6-astra-v1 / v1-rc1 | `astra-v1` / `astra-v1-rc1` | 归档 |
+| gpt-6.1-sol-v1-rc1 | `sol61-v1` | 归档 |
+
+装完后按会话切换：
+
+```bash
+codex -p astra-v2     # GPT-6-Astra v2-rc1
+codex -p sol61-v2     # GPT-6.1-Sol v1-rc2
+codex                 # 不加 -p，沿用你原本的顶层配置
+```
+
+这套走的是 Codex 官方的 profile 分层（`$CODEX_HOME/<name>.config.toml`），**不写顶层 `config.toml`**，所以原来的 `model_instructions_file`、provider、认证、审批一个都不动。细节见 [提示词库说明](prompts/library/README.md)。
 
 ## 上游与修改
 

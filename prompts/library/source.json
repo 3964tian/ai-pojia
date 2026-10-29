@@ -1,0 +1,103 @@
+{
+  "manifest_version": 1,
+  "upstream": {
+    "repository": "https://github.com/MDX-Tom/gpt-instruct",
+    "commit": "3ab84df64468bb74cc9eb4e5423660083953c44f",
+    "commit_date": "2026-10-04T08:41:40Z",
+    "license": "MIT",
+    "license_file": "third_party/gpt-instruct/LICENSE",
+    "retrieved_on": "2026-10-29"
+  },
+  "notes": [
+    "文件为上游 ZIP 内 Markdown 的逐字节副本，未做任何改写。",
+    "prompts/ai-pojia.md 是 v45 的改写版，与本目录的 gpt-5.6-sol-v45.md 不是同一文件。",
+    "profile 名称只能使用普通名称，不能包含点号，因此 6.1 线在配置里记为 sol61。"
+  ],
+  "lines": [
+    {
+      "id": "gpt-5.6-sol-v45",
+      "profile": "sol56-v45",
+      "family": "gpt-5.6-sol",
+      "stage": "stable",
+      "label": "GPT-5.6-Sol v45（稳定生产版）",
+      "prompt_file": "prompts/library/gpt-5.6-sol-v45.md",
+      "bytes": 5170,
+      "sha256": "c71c50e2f7a303b5eebc2b24c0b1ca0d9c753e3240db05c3e472c679907898f7",
+      "archive": "gpt-5.6-sol-v45.zip",
+      "archive_member": "gpt-5.6-sol-unrestricted-v45.md",
+      "archive_sha256": "c86c2c6d20a4d1155d87422f485eb37b77539132270918c002b5d8237a5adf54",
+      "archive_path": "gpt-5.6-sol-v45.zip",
+      "source_sha256_published": "c71c50e2f7a303b5eebc2b24c0b1ca0d9c753e3240db05c3e472c679907898f7"
+    },
+    {
+      "id": "gpt-6-astra-v2-rc1",
+      "profile": "astra-v2",
+      "family": "gpt-6-astra",
+      "stage": "rc",
+      "label": "GPT-6-Astra v2-rc1（预发布）",
+      "prompt_file": "prompts/library/gpt-6-astra-v2-rc1.md",
+      "bytes": 7931,
+      "sha256": "d6976b90b399b9e11df9430dd3663072288f1d858a4910b1e9d5109b3ae7e660",
+      "archive": "gpt-6-astra-v2-rc1.zip",
+      "archive_member": "gpt-6-astra-v2-rc1.md",
+      "archive_sha256": "5c1d96f9aee25393af60245ac6c40b7850f641083a5162cad85762beedd6fc9d",
+      "archive_path": "gpt-6-astra-v2-rc1.zip"
+    },
+    {
+      "id": "gpt-6.1-sol-v1-rc2",
+      "profile": "sol61-v2",
+      "family": "gpt-6.1-sol",
+      "stage": "rc",
+      "label": "GPT-6.1-Sol v1-rc2（预发布）",
+      "prompt_file": "prompts/library/gpt-6.1-sol-v1-rc2.md",
+      "bytes": 7575,
+      "sha256": "37382fb7082652e5b18c99fa5086fbc6d414993eaeae2ec7852ba372b031acac",
+      "archive": "gpt-6.1-sol-v1-rc2.zip",
+      "archive_member": "gpt-6.1-sol-v1-rc2.md",
+      "archive_sha256": "007b8c5858110b809e5b90cd2c18bdc6965246aaee5af170b5487818b7055364",
+      "archive_path": "gpt-6.1-sol-v1-rc2.zip"
+    },
+    {
+      "id": "gpt-6-astra-v1",
+      "profile": "astra-v1",
+      "family": "gpt-6-astra",
+      "stage": "archived",
+      "label": "GPT-6-Astra v1（已归档，首个正式版）",
+      "prompt_file": "prompts/library/gpt-6-astra-v1.md",
+      "bytes": 7495,
+      "sha256": "39fb46d6edc75963677fd92828dcb6c66dce11740b432efda3af9a683158ce16",
+      "archive": "gpt-6-astra-v1.zip",
+      "archive_member": "gpt-6-astra-v1.md",
+      "archive_sha256": "054edb6fa8a6edd2d144c8582756df3179a85481bcb6696d8b730177521b1de1",
+      "archive_path": "historical-versions/gpt-6-astra-v1.zip"
+    },
+    {
+      "id": "gpt-6-astra-v1-rc1",
+      "profile": "astra-v1-rc1",
+      "family": "gpt-6-astra",
+      "stage": "archived",
+      "label": "GPT-6-Astra v1-rc1（已归档）",
+      "prompt_file": "prompts/library/gpt-6-astra-v1-rc1.md",
+      "bytes": 7140,
+      "sha256": "cb3c08818dc17efae327b8290d4cd2c7970bc9c875f556bbf3bff072ac7292d2",
+      "archive": "gpt-6-astra-v1-rc1.zip",
+      "archive_member": "gpt-6-astra-v1-rc1.md",
+      "archive_sha256": "21a32b28b9888d0514828675c45f218b53f4f48ea4087c4c0e7dde6cb7fa645e",
+      "archive_path": "historical-versions/gpt-6-astra-v1-rc1.zip"
+    },
+    {
+      "id": "gpt-6.1-sol-v1-rc1",
+      "profile": "sol61-v1",
+      "family": "gpt-6.1-sol",
+      "stage": "archived",
+      "label": "GPT-6.1-Sol v1-rc1（已归档）",
+      "prompt_file": "prompts/library/gpt-6.1-sol-v1-rc1.md",
+      "bytes": 7431,
+      "sha256": "045efae60c7a2defca5fa5b28bffb288e0169e880b4d9d86cf4b3c5c1ce64bcd",
+      "archive": "gpt-6.1-sol-v1-rc1.zip",
+      "archive_member": "gpt-6.1-sol-v1-rc1.md",
+      "archive_sha256": "731194cea2bd5fb74b037133d3f939f6a35a41afc75a70d2c20e72e6eb4fb349",
+      "archive_path": "historical-versions/gpt-6.1-sol-v1-rc1.zip"
+    }
+  ]
+}
