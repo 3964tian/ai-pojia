@@ -8,7 +8,7 @@
 
 - 清单与文件一致性：6 份 Markdown 的字节数与 SHA256 逐项比对通过；v45 的 `c71c50e2…` 与上游 `prompts/source.json` 记录的 `original_text_sha256` 相同。
 - ZIP 摘要：`gpt-5.6-sol-v45.zip` 为 `c86c2c6d…`，与上游公布值相同；`gpt-6-astra-v1.zip`、`gpt-6-astra-v1-rc1.zip`、`gpt-6.1-sol-v1-rc1.zip` 与 `historical-versions/README.md` 公布的摘要逐项相同。
-- 新增 16 项测试（13 项 CLI + 3 项仓库清单），合计 68 项，2026-10-29 在 macOS 26 arm64、Python 3.14.6 全套通过。
+- 新增 17 项测试（14 项 CLI + 3 项仓库清单），合计 69 项，2026-10-29 在 macOS 26 arm64、Python 3.14.6 全套通过。
 - 覆盖：写入、幂等、dry-run 零写、doctor 篡改检测、拒绝覆盖外来同名文件、重装更新自有漂移副本、单条安装、卸载只删自有、卸载保留手改、清单摘要不符拒绝、带点号 profile 名拒绝、符号链接拒绝、仓库清单比对。
 
 **加载机制实测**（macOS，Codex CLI `26.1023.51421`）：

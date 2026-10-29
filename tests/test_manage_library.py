@@ -199,6 +199,17 @@ class ManageLibraryCLITest(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertEqual(snapshot(self.codex), before)
 
+    def test_human_output_renders_every_command(self) -> None:
+        """The non-JSON path must not depend on fields only doctor provides."""
+        for arguments in (("install",), ("doctor",), ("list",), ("uninstall",)):
+            with self.subTest(command=arguments[0]):
+                result = subprocess.run(
+                    [sys.executable, str(self.script), *arguments, "--codex-dir", str(self.codex)],
+                    cwd=self.repo, capture_output=True, text=True, timeout=30, check=False,
+                )
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+
     def test_list_reads_manifest_without_writing(self) -> None:
         before = snapshot(self.codex)
         output = self.data(self.run_cli("list"))

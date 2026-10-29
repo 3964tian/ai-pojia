@@ -353,7 +353,8 @@ def main(argv: Optional[List[str]] = None) -> int:
                 if args.command == "list":
                     print("{:<22} {:<12} {:<9} {}".format(entry["id"], entry["profile"], entry.get("stage", ""), entry["label"]))
                 else:
-                    print("{:<22} {:<12} {}".format(entry["id"], entry["profile"], entry["status"]))
+                    line_status = entry.get("status") or ("changed" if entry.get("changed") else "unchanged")
+                    print("{:<22} {:<12} {}".format(entry["id"], entry["profile"], line_status))
             if output.get("status"):
                 print("status: {}".format(output["status"]))
     return code
